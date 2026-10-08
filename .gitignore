@@ -12,3 +12,7 @@ venv/
 keys/
 *.log
 .DS_Store
+
+# Environment
+.env*
+!.env.example
