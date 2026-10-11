@@ -11,19 +11,19 @@ export default function NumberSystems() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Input Number</label>
+          <label className="block text-sm text-da-text-muted mb-1">Input Number</label>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter a number"
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none"
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none"
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Input Base</label>
+          <label className="block text-sm text-da-text-muted mb-1">Input Base</label>
           <select value={base} onChange={(e) => setBase(e.target.value)}
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none">
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none">
             <option value="10">Decimal (10)</option>
             <option value="2">Binary (2)</option>
             <option value="8">Octal (8)</option>
@@ -39,9 +39,9 @@ export default function NumberSystems() {
             { label: 'Octal', val: parsed.toString(8) },
             { label: 'Hex', val: parsed.toString(16).toUpperCase() },
           ].map((r) => (
-            <div key={r.label} className="p-4 bg-dark-card border border-dark-border rounded-lg">
-              <p className="text-sm text-gray-400">{r.label}</p>
-              <p className="text-lg font-mono text-gold break-all">{r.val}</p>
+            <div key={r.label} className="p-4 bg-da-surface border border-da-border rounded-lg">
+              <p className="text-sm text-da-text-muted">{r.label}</p>
+              <p className="text-lg font-mono text-da-teal break-all">{r.val}</p>
             </div>
           ))}
         </div>

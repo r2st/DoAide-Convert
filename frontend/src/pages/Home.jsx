@@ -12,10 +12,10 @@ export default function Home() {
       />
       <section className="py-20 text-center px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          <span className="text-gold">100+</span> Free Converters
+          <span className="text-da-teal">100+</span> Free Converters
         </h1>
-        <p className="text-xl md:text-2xl text-gray-400 mb-2">No Login, No Limits</p>
-        <p className="text-gray-500 max-w-xl mx-auto">
+        <p className="text-xl md:text-2xl text-da-text-muted mb-2">No Login, No Limits</p>
+        <p className="text-da-text-faint max-w-xl mx-auto">
           Convert files, units, text, colors, and images — all free, all private, all instant.
         </p>
       </section>
@@ -31,10 +31,10 @@ export default function Home() {
                 <Link
                   key={tool.slug}
                   to={`/tool/${tool.slug}`}
-                  className="block p-5 bg-dark-card border border-dark-border rounded-lg hover:border-gold/50 transition group"
+                  className="block p-5 bg-da-surface border border-da-border rounded-lg hover:border-da-teal/50 transition group"
                 >
-                  <h3 className="font-semibold text-white group-hover:text-gold transition">{tool.name}</h3>
-                  <p className="text-sm text-gray-500 mt-1">{tool.desc}</p>
+                  <h3 className="font-semibold text-da-text group-hover:text-da-teal transition">{tool.name}</h3>
+                  <p className="text-sm text-da-text-faint mt-1">{tool.desc}</p>
                 </Link>
               ))}
             </div>

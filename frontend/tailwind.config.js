@@ -4,11 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: '#F0B429',
-        'gold-dark': '#D4990A',
-        dark: '#0a0a0a',
-        'dark-card': '#141414',
-        'dark-border': '#2a2a2a',
+        'da-teal': 'var(--da-teal)',
+        'da-teal-dark': 'var(--da-teal-dark)',
+        'da-teal-light': 'var(--da-teal-light)',
+        'da-bg': 'var(--da-bg)',
+        'da-surface': 'var(--da-surface)',
+        'da-border': 'var(--da-border)',
+        'da-text': 'var(--da-text)',
+        'da-text-muted': 'var(--da-text-muted)',
+        'da-text-faint': 'var(--da-text-faint)',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },

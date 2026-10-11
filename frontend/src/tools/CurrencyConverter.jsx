@@ -30,37 +30,37 @@ export default function CurrencyConverter() {
 
   return (
     <div className="space-y-4">
-      {loading && <p className="text-gray-400 text-sm">Loading live rates...</p>}
+      {loading && <p className="text-da-text-muted text-sm">Loading live rates...</p>}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Amount</label>
+          <label className="block text-sm text-da-text-muted mb-1">Amount</label>
           <input
             type="number"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Enter amount"
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none"
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none"
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">From</label>
+          <label className="block text-sm text-da-text-muted mb-1">From</label>
           <select value={from} onChange={(e) => setFrom(e.target.value)}
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none">
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none">
             {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">To</label>
+          <label className="block text-sm text-da-text-muted mb-1">To</label>
           <select value={to} onChange={(e) => setTo(e.target.value)}
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none">
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none">
             {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
       </div>
       {result && (
-        <div className="p-4 bg-dark-card border border-gold/30 rounded-lg">
-          <p className="text-sm text-gray-400">Result</p>
-          <p className="text-2xl font-bold text-gold">{result} <span className="text-lg text-white">{to}</span></p>
+        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
+          <p className="text-sm text-da-text-muted">Result</p>
+          <p className="text-2xl font-bold text-da-teal">{result} <span className="text-lg text-da-text">{to}</span></p>
         </div>
       )}
     </div>

@@ -20,11 +20,11 @@ export default function FileUpload({ onFile, onFiles, accept, multiple = false, 
     <div
       {...getRootProps()}
       className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition ${
-        isDragActive ? 'border-gold bg-gold/10' : 'border-dark-border hover:border-gold/50'
+        isDragActive ? 'border-da-teal bg-da-teal/10' : 'border-da-border hover:border-da-teal/50'
       }`}
     >
       <input {...getInputProps()} />
-      <p className="text-gray-400">{isDragActive ? 'Drop it here...' : label}</p>
+      <p className="text-da-text-muted">{isDragActive ? 'Drop it here...' : label}</p>
     </div>
   );
 }

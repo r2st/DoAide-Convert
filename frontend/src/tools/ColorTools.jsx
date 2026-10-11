@@ -27,7 +27,7 @@ function luminance(r, g, b) {
 }
 
 export function ColorPicker() {
-  const [hex, setHex] = useState('#F0B429');
+  const [hex, setHex] = useState('#0D9488');
   const rgb = hexToRgb(hex);
   const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
 
@@ -37,18 +37,18 @@ export function ColorPicker() {
         <input type="color" value={hex} onChange={(e) => setHex(e.target.value)}
           className="w-20 h-20 rounded-lg cursor-pointer border-0" />
         <div className="space-y-1">
-          <p className="text-sm text-gray-400">HEX: <span className="text-white font-mono">{hex.toUpperCase()}</span></p>
-          <p className="text-sm text-gray-400">RGB: <span className="text-white font-mono">rgb({rgb.r}, {rgb.g}, {rgb.b})</span></p>
-          <p className="text-sm text-gray-400">HSL: <span className="text-white font-mono">hsl({hsl.h}, {hsl.s}%, {hsl.l}%)</span></p>
+          <p className="text-sm text-da-text-muted">HEX: <span className="text-da-text font-mono">{hex.toUpperCase()}</span></p>
+          <p className="text-sm text-da-text-muted">RGB: <span className="text-da-text font-mono">rgb({rgb.r}, {rgb.g}, {rgb.b})</span></p>
+          <p className="text-sm text-da-text-muted">HSL: <span className="text-da-text font-mono">hsl({hsl.h}, {hsl.s}%, {hsl.l}%)</span></p>
         </div>
       </div>
-      <div className="h-24 rounded-lg border border-dark-border" style={{ backgroundColor: hex }} />
+      <div className="h-24 rounded-lg border border-da-border" style={{ backgroundColor: hex }} />
     </div>
   );
 }
 
 export function ColorPalette() {
-  const [baseHex, setBaseHex] = useState('#F0B429');
+  const [baseHex, setBaseHex] = useState('#0D9488');
   const rgb = hexToRgb(baseHex);
   const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
 
@@ -65,19 +65,19 @@ export function ColorPalette() {
       <div className="flex items-center gap-4">
         <input type="color" value={baseHex} onChange={(e) => setBaseHex(e.target.value)}
           className="w-16 h-16 rounded-lg cursor-pointer border-0" />
-        <p className="text-gray-400">Pick a base color to generate a palette</p>
+        <p className="text-da-text-muted">Pick a base color to generate a palette</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
         <div className="text-center">
-          <div className="h-20 rounded-lg border border-dark-border" style={{ backgroundColor: baseHex }} />
-          <p className="text-xs text-gray-400 mt-1">Base</p>
+          <div className="h-20 rounded-lg border border-da-border" style={{ backgroundColor: baseHex }} />
+          <p className="text-xs text-da-text-muted mt-1">Base</p>
         </div>
         {palette.map((p) => {
           const c = `hsl(${p.h}, ${hsl.s}%, ${hsl.l}%)`;
           return (
             <div key={p.label} className="text-center">
-              <div className="h-20 rounded-lg border border-dark-border" style={{ backgroundColor: c }} />
-              <p className="text-xs text-gray-400 mt-1">{p.label}</p>
+              <div className="h-20 rounded-lg border border-da-border" style={{ backgroundColor: c }} />
+              <p className="text-xs text-da-text-muted mt-1">{p.label}</p>
             </div>
           );
         })}
@@ -102,7 +102,7 @@ export function ContrastChecker() {
   const aaa = ratio >= 7;
 
   const badge = (pass) => (
-    <span className={`px-2 py-0.5 rounded text-xs font-bold ${pass ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
+    <span className={`px-2 py-0.5 rounded text-xs font-bold ${pass ? 'bg-green-600 text-da-text' : 'bg-red-600 text-da-text'}`}>
       {pass ? 'PASS' : 'FAIL'}
     </span>
   );
@@ -111,28 +111,28 @@ export function ContrastChecker() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Foreground Color</label>
+          <label className="block text-sm text-da-text-muted mb-1">Foreground Color</label>
           <div className="flex items-center gap-2">
             <input type="color" value={fg} onChange={(e) => setFg(e.target.value)} className="w-12 h-10 rounded cursor-pointer border-0" />
             <input type="text" value={fg} onChange={(e) => setFg(e.target.value)}
-              className="flex-1 px-3 py-2 bg-dark-card border border-dark-border rounded-lg text-white font-mono focus:border-gold outline-none" />
+              className="flex-1 px-3 py-2 bg-da-surface border border-da-border rounded-lg text-da-text font-mono focus:border-da-teal outline-none" />
           </div>
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Background Color</label>
+          <label className="block text-sm text-da-text-muted mb-1">Background Color</label>
           <div className="flex items-center gap-2">
             <input type="color" value={bg} onChange={(e) => setBg(e.target.value)} className="w-12 h-10 rounded cursor-pointer border-0" />
             <input type="text" value={bg} onChange={(e) => setBg(e.target.value)}
-              className="flex-1 px-3 py-2 bg-dark-card border border-dark-border rounded-lg text-white font-mono focus:border-gold outline-none" />
+              className="flex-1 px-3 py-2 bg-da-surface border border-da-border rounded-lg text-da-text font-mono focus:border-da-teal outline-none" />
           </div>
         </div>
       </div>
-      <div className="p-6 rounded-lg border border-dark-border" style={{ backgroundColor: bg, color: fg }}>
+      <div className="p-6 rounded-lg border border-da-border" style={{ backgroundColor: bg, color: fg }}>
         <p className="text-2xl font-bold">Sample Text Preview</p>
         <p className="text-sm mt-1">The quick brown fox jumps over the lazy dog.</p>
       </div>
-      <div className="p-4 bg-dark-card border border-dark-border rounded-lg">
-        <p className="text-lg font-bold mb-2">Contrast Ratio: <span className="text-gold">{ratio.toFixed(2)}:1</span></p>
+      <div className="p-4 bg-da-surface border border-da-border rounded-lg">
+        <p className="text-lg font-bold mb-2">Contrast Ratio: <span className="text-da-teal">{ratio.toFixed(2)}:1</span></p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div>AA Large Text {badge(aaLarge)}</div>
           <div>AA Normal Text {badge(aa)}</div>

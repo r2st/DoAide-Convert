@@ -15,7 +15,7 @@ export function WordCounter() {
         onChange={(e) => setText(e.target.value)}
         placeholder="Type or paste your text here..."
         rows={8}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none resize-y"
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none resize-y"
       />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
@@ -24,9 +24,9 @@ export function WordCounter() {
           { label: 'Sentences', val: sentences },
           { label: 'Paragraphs', val: paragraphs },
         ].map((s) => (
-          <div key={s.label} className="p-4 bg-dark-card border border-dark-border rounded-lg text-center">
-            <p className="text-2xl font-bold text-gold">{s.val}</p>
-            <p className="text-sm text-gray-400">{s.label}</p>
+          <div key={s.label} className="p-4 bg-da-surface border border-da-border rounded-lg text-center">
+            <p className="text-2xl font-bold text-da-teal">{s.val}</p>
+            <p className="text-sm text-da-text-muted">{s.label}</p>
           </div>
         ))}
       </div>
@@ -53,14 +53,14 @@ export function CaseConverter() {
         onChange={(e) => setText(e.target.value)}
         placeholder="Type or paste your text here..."
         rows={6}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none resize-y"
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none resize-y"
       />
       <div className="flex flex-wrap gap-2">
         {['upper', 'lower', 'title', 'sentence'].map((type) => (
           <button
             key={type}
             onClick={() => setText(convert(type))}
-            className="px-4 py-2 bg-gold/20 hover:bg-gold/30 text-gold rounded-lg transition text-sm"
+            className="px-4 py-2 bg-da-teal/20 hover:bg-da-teal/30 text-da-teal rounded-lg transition text-sm"
           >
             {type.charAt(0).toUpperCase() + type.slice(1)} Case
           </button>
@@ -104,11 +104,11 @@ export function JsonFormatter() {
         onChange={(e) => setInput(e.target.value)}
         placeholder='Paste your JSON here...'
         rows={8}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y"
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y"
       />
       <div className="flex gap-2">
-        <button onClick={format} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Format</button>
-        <button onClick={minify} className="px-4 py-2 bg-gold/20 text-gold rounded-lg hover:bg-gold/30 transition">Minify</button>
+        <button onClick={format} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Format</button>
+        <button onClick={minify} className="px-4 py-2 bg-da-teal/20 text-da-teal rounded-lg hover:bg-da-teal/30 transition">Minify</button>
       </div>
       {error && <p className="text-red-400 text-sm">{error}</p>}
       {output && (
@@ -116,7 +116,7 @@ export function JsonFormatter() {
           value={output}
           readOnly
           rows={8}
-          className="w-full px-4 py-3 bg-dark-card border border-gold/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y"
+          className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y"
         />
       )}
     </div>
@@ -133,13 +133,13 @@ export function Base64Tool() {
   return (
     <div className="space-y-4">
       <textarea value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter text..." rows={5}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y" />
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y" />
       <div className="flex gap-2">
-        <button onClick={encode} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Encode</button>
-        <button onClick={decode} className="px-4 py-2 bg-gold/20 text-gold rounded-lg hover:bg-gold/30 transition">Decode</button>
+        <button onClick={encode} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Encode</button>
+        <button onClick={decode} className="px-4 py-2 bg-da-teal/20 text-da-teal rounded-lg hover:bg-da-teal/30 transition">Decode</button>
       </div>
       {output && <textarea value={output} readOnly rows={5}
-        className="w-full px-4 py-3 bg-dark-card border border-gold/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />}
+        className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />}
     </div>
   );
 }
@@ -154,13 +154,13 @@ export function UrlEncodeTool() {
   return (
     <div className="space-y-4">
       <textarea value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter text or URL..." rows={4}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y" />
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y" />
       <div className="flex gap-2">
-        <button onClick={encode} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Encode</button>
-        <button onClick={decode} className="px-4 py-2 bg-gold/20 text-gold rounded-lg hover:bg-gold/30 transition">Decode</button>
+        <button onClick={encode} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Encode</button>
+        <button onClick={decode} className="px-4 py-2 bg-da-teal/20 text-da-teal rounded-lg hover:bg-da-teal/30 transition">Decode</button>
       </div>
       {output && <textarea value={output} readOnly rows={4}
-        className="w-full px-4 py-3 bg-dark-card border border-gold/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />}
+        className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />}
     </div>
   );
 }
@@ -172,14 +172,14 @@ export function MarkdownToHtml() {
   return (
     <div className="space-y-4">
       <textarea value={md} onChange={(e) => setMd(e.target.value)} placeholder="Enter Markdown..." rows={8}
-        className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y" />
+        className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y" />
       {html && (
         <>
-          <div className="p-4 bg-dark-card border border-dark-border rounded-lg prose prose-invert max-w-none"
+          <div className="p-4 bg-da-surface border border-da-border rounded-lg prose max-w-none"
             dangerouslySetInnerHTML={{ __html: html }} />
           <details className="text-sm">
-            <summary className="text-gray-400 cursor-pointer">View HTML source</summary>
-            <pre className="mt-2 p-4 bg-dark-card border border-dark-border rounded-lg text-green-400 overflow-auto text-xs">{html}</pre>
+            <summary className="text-da-text-muted cursor-pointer">View HTML source</summary>
+            <pre className="mt-2 p-4 bg-da-surface border border-da-border rounded-lg text-green-400 overflow-auto text-xs">{html}</pre>
           </details>
         </>
       )}
@@ -210,13 +210,13 @@ export function LoremIpsumGenerator() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-4">
-        <label className="text-sm text-gray-400">Paragraphs:</label>
+        <label className="text-sm text-da-text-muted">Paragraphs:</label>
         <input type="number" value={count} onChange={(e) => setCount(Math.max(1, Number(e.target.value)))} min={1} max={20}
-          className="w-20 px-3 py-2 bg-dark-card border border-dark-border rounded-lg text-white focus:border-gold outline-none" />
-        <button onClick={generate} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Generate</button>
+          className="w-20 px-3 py-2 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none" />
+        <button onClick={generate} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Generate</button>
       </div>
       {output && <textarea value={output} readOnly rows={10}
-        className="w-full px-4 py-3 bg-dark-card border border-gold/30 rounded-lg text-gray-300 text-sm outline-none resize-y" />}
+        className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-da-text-muted text-sm outline-none resize-y" />}
     </div>
   );
 }
@@ -234,23 +234,23 @@ export function TextDiff() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Original Text</label>
+          <label className="block text-sm text-da-text-muted mb-1">Original Text</label>
           <textarea value={text1} onChange={(e) => setText1(e.target.value)} rows={8} placeholder="Paste original text..."
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y" />
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y" />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Modified Text</label>
+          <label className="block text-sm text-da-text-muted mb-1">Modified Text</label>
           <textarea value={text2} onChange={(e) => setText2(e.target.value)} rows={8} placeholder="Paste modified text..."
-            className="w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg text-white font-mono text-sm focus:border-gold outline-none resize-y" />
+            className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text font-mono text-sm focus:border-da-teal outline-none resize-y" />
         </div>
       </div>
-      <button onClick={() => setShowDiff(true)} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Compare</button>
+      <button onClick={() => setShowDiff(true)} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Compare</button>
       {showDiff && (
-        <div className="p-4 bg-dark-card border border-dark-border rounded-lg font-mono text-sm overflow-auto max-h-96">
+        <div className="p-4 bg-da-surface border border-da-border rounded-lg font-mono text-sm overflow-auto max-h-96">
           {Array.from({ length: maxLen }).map((_, i) => {
             const l1 = lines1[i] ?? '';
             const l2 = lines2[i] ?? '';
-            if (l1 === l2) return <div key={i} className="text-gray-400 px-2">{l1 || ' '}</div>;
+            if (l1 === l2) return <div key={i} className="text-da-text-muted px-2">{l1 || ' '}</div>;
             return (
               <div key={i}>
                 {l1 && <div className="bg-red-900/30 text-red-300 px-2">- {l1}</div>}

@@ -52,7 +52,7 @@ export default function ToolPage() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <h1 className="text-3xl font-bold mb-4">Tool Not Found</h1>
-        <Link to="/" className="text-gold hover:underline">← Back to all tools</Link>
+        <Link to="/" className="text-da-teal hover:underline">&larr; Back to all tools</Link>
       </div>
     );
   }
@@ -61,12 +61,12 @@ export default function ToolPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <SEO title={tool.seoTitle} description={tool.seoDesc} path={`/tool/${slug}`} />
       <div className="mb-2">
-        <Link to="/" className="text-sm text-gray-500 hover:text-gold transition">← All Tools</Link>
-        <span className="text-gray-600 mx-2">/</span>
-        <span className="text-sm text-gray-400">{tool.category}</span>
+        <Link to="/" className="text-sm text-da-text-faint hover:text-da-teal transition">&larr; All Tools</Link>
+        <span className="text-da-border mx-2">/</span>
+        <span className="text-sm text-da-text-muted">{tool.category}</span>
       </div>
       <h1 className="text-3xl font-bold mb-2">{tool.name}</h1>
-      <p className="text-gray-400 mb-8">{tool.desc}</p>
+      <p className="text-da-text-muted mb-8">{tool.desc}</p>
       <div className="mb-8">
         <ToolComponent />
       </div>

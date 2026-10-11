@@ -130,10 +130,10 @@ export function BlogList() {
       <div className="space-y-6">
         {posts.map((post) => (
           <Link key={post.slug} to={`/blog/${post.slug}`}
-            className="block p-6 bg-dark-card border border-dark-border rounded-lg hover:border-gold/50 transition group">
-            <p className="text-sm text-gray-500 mb-1">{post.date}</p>
-            <h2 className="text-xl font-bold group-hover:text-gold transition">{post.title}</h2>
-            <p className="text-gray-400 mt-2">{post.excerpt}</p>
+            className="block p-6 bg-da-surface border border-da-border rounded-lg hover:border-da-teal/50 transition group">
+            <p className="text-sm text-da-text-faint mb-1">{post.date}</p>
+            <h2 className="text-xl font-bold group-hover:text-da-teal transition">{post.title}</h2>
+            <p className="text-da-text-muted mt-2">{post.excerpt}</p>
           </Link>
         ))}
       </div>
@@ -149,7 +149,7 @@ export function BlogPost() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-        <Link to="/blog" className="text-gold hover:underline">← Back to Blog</Link>
+        <Link to="/blog" className="text-da-teal hover:underline">← Back to Blog</Link>
       </div>
     );
   }
@@ -157,10 +157,10 @@ export function BlogPost() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <SEO title={`${post.title} — DoAide Convert`} description={post.excerpt} path={`/blog/${post.slug}`} />
-      <Link to="/blog" className="text-sm text-gray-500 hover:text-gold transition">← Back to Blog</Link>
-      <p className="text-sm text-gray-500 mt-4">{post.date}</p>
+      <Link to="/blog" className="text-sm text-da-text-faint hover:text-da-teal transition">← Back to Blog</Link>
+      <p className="text-sm text-da-text-faint mt-4">{post.date}</p>
       <h1 className="text-3xl font-bold mt-2 mb-6">{post.title}</h1>
-      <div className="prose prose-invert max-w-none prose-headings:text-white prose-a:text-gold prose-strong:text-white"
+      <div className="prose prose max-w-none prose-headings:text-da-text prose-a:text-da-teal prose-strong:text-da-text"
         dangerouslySetInnerHTML={{ __html: post.content.replace(/### /g, '<h3>').replace(/## /g, '<h2>').replace(/\n- /g, '\n<li>').replace(/\n\n/g, '<br/><br/>') }} />
     </div>
   );

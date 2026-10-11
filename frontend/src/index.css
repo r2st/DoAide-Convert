@@ -1,15 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --da-teal: #0D9488;
+  --da-teal-dark: #0B7C72;
+  --da-teal-light: #5EEAD4;
+  --da-bg: #FAFAFA;
+  --da-surface: #FFFFFF;
+  --da-border: #E5E7EB;
+  --da-text: #111827;
+  --da-text-muted: #6B7280;
+  --da-text-faint: #9CA3AF;
+}
+
 body {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: var(--da-bg);
+  color: var(--da-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 ::selection {
-  background-color: #F0B429;
-  color: #0a0a0a;
+  background-color: #0D9488;
+  color: #ffffff;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

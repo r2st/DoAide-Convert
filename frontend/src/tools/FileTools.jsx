@@ -30,18 +30,18 @@ export function PdfMerge() {
       <FileUpload onFiles={handleFiles} accept={{ 'application/pdf': ['.pdf'] }} multiple label="Drop PDF files here (select multiple)" />
       {files.length > 0 && (
         <div className="space-y-1">
-          <p className="text-sm text-gray-400">{files.length} file(s) selected:</p>
-          {files.map((f, i) => <p key={i} className="text-sm text-white">{f.name}</p>)}
+          <p className="text-sm text-da-text-muted">{files.length} file(s) selected:</p>
+          {files.map((f, i) => <p key={i} className="text-sm text-da-text">{f.name}</p>)}
           <div className="flex gap-2 mt-2">
-            <button onClick={merge} className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Merge PDFs</button>
+            <button onClick={merge} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Merge PDFs</button>
             <button onClick={() => setFiles([])} className="px-4 py-2 bg-red-600/20 text-red-400 rounded-lg hover:bg-red-600/30 transition">Clear</button>
           </div>
         </div>
       )}
-      {loading && <p className="text-gold">Merging...</p>}
+      {loading && <p className="text-da-teal">Merging...</p>}
       {result && (
-        <div className="p-4 bg-dark-card border border-gold/30 rounded-lg">
-          <a href={result} download="merged.pdf" className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Download Merged PDF</a>
+        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
+          <a href={result} download="merged.pdf" className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download Merged PDF</a>
         </div>
       )}
     </div>
@@ -70,11 +70,11 @@ export function PdfCompress() {
   return (
     <div className="space-y-4">
       <FileUpload onFile={handleFile} accept={{ 'application/pdf': ['.pdf'] }} label="Drop a PDF to compress" />
-      {loading && <p className="text-gold">Compressing...</p>}
+      {loading && <p className="text-da-teal">Compressing...</p>}
       {result && (
-        <div className="p-4 bg-dark-card border border-gold/30 rounded-lg">
-          <p className="text-sm text-gray-400 mb-2">Original: {(result.originalSize / 1024).toFixed(1)} KB → Compressed: {(result.newSize / 1024).toFixed(1)} KB</p>
-          <a href={result.url} download="compressed.pdf" className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Download</a>
+        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
+          <p className="text-sm text-da-text-muted mb-2">Original: {(result.originalSize / 1024).toFixed(1)} KB → Compressed: {(result.newSize / 1024).toFixed(1)} KB</p>
+          <a href={result.url} download="compressed.pdf" className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download</a>
         </div>
       )}
     </div>
@@ -103,10 +103,10 @@ export function JsonToCsv() {
   return (
     <div className="space-y-4">
       <FileUpload onFile={handleFile} accept={{ 'application/json': ['.json'] }} label="Drop a JSON file to convert to CSV" />
-      {loading && <p className="text-gold">Converting...</p>}
+      {loading && <p className="text-da-teal">Converting...</p>}
       {result && (
-        <div className="p-4 bg-dark-card border border-gold/30 rounded-lg">
-          <a href={result} download="converted.csv" className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Download CSV</a>
+        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
+          <a href={result} download="converted.csv" className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download CSV</a>
         </div>
       )}
     </div>
@@ -135,13 +135,13 @@ export function CsvToJson() {
   return (
     <div className="space-y-4">
       <FileUpload onFile={handleFile} accept={{ 'text/csv': ['.csv'] }} label="Drop a CSV file to convert to JSON" />
-      {loading && <p className="text-gold">Converting...</p>}
+      {loading && <p className="text-da-teal">Converting...</p>}
       {result && (
         <div className="space-y-2">
           <textarea value={result} readOnly rows={10}
-            className="w-full px-4 py-3 bg-dark-card border border-gold/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />
+            className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-green-400 font-mono text-sm outline-none resize-y" />
           <button onClick={() => { const blob = new Blob([result], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'converted.json'; a.click(); }}
-            className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Download JSON</button>
+            className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download JSON</button>
         </div>
       )}
     </div>
@@ -170,10 +170,10 @@ export function ExcelToCsv() {
   return (
     <div className="space-y-4">
       <FileUpload onFile={handleFile} accept={{ 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }} label="Drop an Excel file (.xlsx) to convert to CSV" />
-      {loading && <p className="text-gold">Converting...</p>}
+      {loading && <p className="text-da-teal">Converting...</p>}
       {result && (
-        <div className="p-4 bg-dark-card border border-gold/30 rounded-lg">
-          <a href={result} download="converted.csv" className="px-4 py-2 bg-gold text-dark rounded-lg font-medium hover:bg-gold-dark transition">Download CSV</a>
+        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
+          <a href={result} download="converted.csv" className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download CSV</a>
         </div>
       )}
     </div>
