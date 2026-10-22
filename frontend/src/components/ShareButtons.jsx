@@ -10,7 +10,7 @@ export default function ShareButtons({ title, url }) {
         href={`https://wa.me/?text=${text}%20${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="px-3 py-1.5 bg-green-600 hover:bg-green-700 rounded text-sm text-white transition"
+        className="inline-flex items-center px-4 py-1.5 min-h-[48px] bg-green-600 hover:bg-green-700 rounded text-sm text-white transition"
       >
         WhatsApp
       </a>
@@ -18,7 +18,7 @@ export default function ShareButtons({ title, url }) {
         href={`https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 rounded text-sm text-white transition"
+        className="inline-flex items-center px-4 py-1.5 min-h-[48px] bg-sky-500 hover:bg-sky-600 rounded text-sm text-white transition"
       >
         Twitter
       </a>
