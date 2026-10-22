@@ -141,6 +141,65 @@ async def image_to_base64(file: UploadFile = File(...)):
 
 # ── PDF endpoints ────────────────────────────────────────────────────────────
 
+@app.post("/api/pdf/to-images")
+async def pdf_to_images(
+    file: UploadFile = File(...),
+    output_format: str = Query("png", description="Output image format: png or jpg"),
+    dpi: int = Query(150, ge=72, le=300),
+):
+    fmt = output_format.lower().strip()
+    if fmt not in ("png", "jpg", "jpeg"):
+        raise HTTPException(400, f"Unsupported format: {fmt}")
+    try:
+        data = await file.read()
+        reader = PdfReader(io.BytesIO(data))
+        if len(reader.pages) > 50:
+            raise HTTPException(400, "Maximum 50 pages supported")
+        images = []
+        for i, page in enumerate(reader.pages):
+            mb = page.mediabox
+            w = float(mb.width) * dpi / 72
+            h = float(mb.height) * dpi / 72
+            img = Image.new("RGB", (int(w), int(h)), "white")
+            for img_obj in page.images:
+                try:
+                    pil_img = Image.open(io.BytesIO(img_obj.data))
+                    pil_img = pil_img.convert("RGB")
+                    pil_img = pil_img.resize((int(w), int(h)), Image.LANCZOS)
+                    img = pil_img
+                    break
+                except Exception:
+                    continue
+            buf = io.BytesIO()
+            save_fmt = "JPEG" if fmt in ("jpg", "jpeg") else "PNG"
+            img.save(buf, format=save_fmt)
+            images.append(buf.getvalue())
+        if len(images) == 1:
+            mime = "image/jpeg" if fmt in ("jpg", "jpeg") else "image/png"
+            ext = "jpg" if fmt in ("jpg", "jpeg") else "png"
+            return StreamingResponse(
+                io.BytesIO(images[0]),
+                media_type=mime,
+                headers={"Content-Disposition": f'attachment; filename="page_1.{ext}"'},
+            )
+        import zipfile
+        zip_buf = io.BytesIO()
+        ext = "jpg" if fmt in ("jpg", "jpeg") else "png"
+        with zipfile.ZipFile(zip_buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            for i, img_data in enumerate(images):
+                zf.writestr(f"page_{i + 1}.{ext}", img_data)
+        zip_buf.seek(0)
+        return StreamingResponse(
+            zip_buf,
+            media_type="application/zip",
+            headers={"Content-Disposition": 'attachment; filename="pdf_pages.zip"'},
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(500, str(e))
+
+
 @app.post("/api/pdf/to-text")
 async def pdf_to_text(file: UploadFile = File(...)):
     try:

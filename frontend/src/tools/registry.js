@@ -63,9 +63,12 @@ export const categories = [
       { slug: 'pdf-merge', name: 'PDF Merger', desc: 'Merge multiple PDF files into one', seoTitle: 'PDF Merger — Merge PDF Files Online', seoDesc: 'Free PDF merger. Combine multiple PDF files into a single document.' },
       { slug: 'pdf-compress', name: 'PDF Compressor', desc: 'Compress PDF files to reduce size', seoTitle: 'PDF Compressor — Reduce PDF Size', seoDesc: 'Free PDF compressor. Reduce PDF file size while maintaining quality.' },
       { slug: 'pdf-to-text', name: 'PDF to Text', desc: 'Extract all text from a PDF file', seoTitle: 'PDF to Text Extractor — Copy Text from PDF', seoDesc: 'Free PDF to text extractor. Pull all selectable text out of a PDF and copy it or download it as a .txt file.' },
+      { slug: 'pdf-to-image', name: 'PDF to Image', desc: 'Convert PDF pages to PNG or JPG images', seoTitle: 'PDF to Image Converter — PDF to PNG, JPG', seoDesc: 'Free PDF to image converter. Convert PDF pages to PNG or JPG images at 72, 150 or 300 DPI. Multi-page PDFs download as a ZIP.' },
       { slug: 'json-to-csv', name: 'JSON to CSV', desc: 'Convert JSON data to CSV format', seoTitle: 'JSON to CSV Converter', seoDesc: 'Free JSON to CSV converter. Convert JSON arrays to CSV files instantly.' },
       { slug: 'csv-to-json', name: 'CSV to JSON', desc: 'Convert CSV files to JSON format', seoTitle: 'CSV to JSON Converter', seoDesc: 'Free CSV to JSON converter. Convert CSV files to JSON data instantly.' },
       { slug: 'excel-to-csv', name: 'Excel to CSV', desc: 'Convert Excel spreadsheets to CSV', seoTitle: 'Excel to CSV Converter', seoDesc: 'Free Excel to CSV converter. Convert XLSX spreadsheets to CSV files.' },
+      { slug: 'bulk-rename', name: 'Bulk File Renamer', desc: 'Rename multiple files with patterns — add numbers, dates, prefixes', seoTitle: 'Bulk File Renamer — Rename Multiple Files Online', seoDesc: 'Free bulk file renamer. Rename multiple files at once with custom patterns, sequential numbers, dates and prefixes.' },
+      { slug: 'file-size', name: 'File Size Calculator', desc: 'Analyze file sizes — total, average, largest, with visual breakdown', seoTitle: 'File Size Calculator — Analyze File Sizes Online', seoDesc: 'Free file size calculator. Drop files to see total size, average, largest file and a visual size breakdown.' },
     ],
   },
   {

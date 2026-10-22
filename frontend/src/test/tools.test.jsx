@@ -13,8 +13,8 @@ function wrap(ui) {
 }
 
 describe('Registry', () => {
-  it('should have 38 tools total', () => {
-    expect(getAllTools().length).toBe(38);
+  it('should have 41 tools total', () => {
+    expect(getAllTools().length).toBe(41);
   });
 
   it('should find tool by slug', () => {
@@ -161,6 +161,34 @@ describe('ContrastChecker', () => {
   it('shows contrast ratio', () => {
     wrap(<ContrastChecker />);
     expect(screen.getByText(/Contrast Ratio:/)).toBeInTheDocument();
+  });
+});
+
+import { BulkFileRenamer, FileSizeCalculator } from '../tools/FileTools';
+
+describe('BulkFileRenamer', () => {
+  it('renders naming pattern input', () => {
+    wrap(<BulkFileRenamer />);
+    expect(screen.getByDisplayValue('{name}')).toBeInTheDocument();
+  });
+});
+
+describe('FileSizeCalculator', () => {
+  it('renders drop zone', () => {
+    wrap(<FileSizeCalculator />);
+    expect(screen.getByText(/Drop files to calculate sizes/)).toBeInTheDocument();
+  });
+});
+
+describe('Registry new tools', () => {
+  it('finds pdf-to-image tool', () => {
+    expect(findTool('pdf-to-image')).toBeTruthy();
+  });
+  it('finds bulk-rename tool', () => {
+    expect(findTool('bulk-rename')).toBeTruthy();
+  });
+  it('finds file-size tool', () => {
+    expect(findTool('file-size')).toBeTruthy();
   });
 });
 

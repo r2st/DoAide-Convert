@@ -10,7 +10,7 @@ import NumberSystems from '../tools/NumberSystems';
 import { WordCounter, CaseConverter, JsonFormatter, Base64Tool, UrlEncodeTool, MarkdownToHtml, LoremIpsumGenerator, TextDiff } from '../tools/TextTools';
 import { ColorPicker, ColorPalette, ContrastChecker } from '../tools/ColorTools';
 import { ImageCompress, ImageResize, ImageConvert, ImageToBase64 } from '../tools/ImageTools';
-import { PdfMerge, PdfCompress, PdfToText, JsonToCsv, CsvToJson, ExcelToCsv } from '../tools/FileTools';
+import { PdfMerge, PdfCompress, PdfToText, PdfToImages, JsonToCsv, CsvToJson, ExcelToCsv, BulkFileRenamer, FileSizeCalculator } from '../tools/FileTools';
 
 const TOOL_COMPONENTS = {
   length: () => <UnitConverter type="length" />,
@@ -48,9 +48,12 @@ const TOOL_COMPONENTS = {
   'pdf-merge': () => <PdfMerge />,
   'pdf-compress': () => <PdfCompress />,
   'pdf-to-text': () => <PdfToText />,
+  'pdf-to-image': () => <PdfToImages />,
   'json-to-csv': () => <JsonToCsv />,
   'csv-to-json': () => <CsvToJson />,
   'excel-to-csv': () => <ExcelToCsv />,
+  'bulk-rename': () => <BulkFileRenamer />,
+  'file-size': () => <FileSizeCalculator />,
 };
 
 export default function ToolPage() {

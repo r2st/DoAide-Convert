@@ -236,6 +236,25 @@ async def test_image_convert_new_formats(client):
         assert resp.headers["content-type"] == mime
 
 
+async def test_pdf_to_images_single_page(client):
+    pdf = make_pdf("Test page")
+    resp = await client.post(
+        "/api/pdf/to-images?output_format=png&dpi=72",
+        files={"file": ("test.pdf", pdf, "application/pdf")},
+    )
+    assert resp.status_code == 200
+    assert resp.headers["content-type"] in ("image/png", "application/zip")
+
+
+async def test_pdf_to_images_jpg(client):
+    pdf = make_pdf("JPG test")
+    resp = await client.post(
+        "/api/pdf/to-images?output_format=jpg&dpi=72",
+        files={"file": ("test.pdf", pdf, "application/pdf")},
+    )
+    assert resp.status_code == 200
+
+
 async def test_pdf_merge_single_file(client):
     pdf = make_pdf("Only one")
     resp = await client.post(
