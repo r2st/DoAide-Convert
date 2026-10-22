@@ -10,10 +10,10 @@ export default function Layout() {
             <span className="text-da-text-faint font-light">|</span>
             <span className="text-da-text">Convert</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-da-text-muted">
-            <Link to="/" className="hover:text-da-teal transition">Home</Link>
-            <Link to="/blog" className="hover:text-da-teal transition">Blog</Link>
-            <Link to="/embed" className="hover:text-da-teal transition">Embed</Link>
+          <nav className="flex items-center gap-3 md:gap-6 text-sm text-da-text-muted">
+            <Link to="/" className="hover:text-da-teal transition py-2 px-1 min-h-[44px] inline-flex items-center">Home</Link>
+            <Link to="/blog" className="hover:text-da-teal transition py-2 px-1 min-h-[44px] inline-flex items-center">Blog</Link>
+            <Link to="/embed" className="hover:text-da-teal transition py-2 px-1 min-h-[44px] hidden sm:inline-flex items-center">Embed</Link>
           </nav>
         </div>
       </header>

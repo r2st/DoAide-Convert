@@ -2,24 +2,84 @@ import { useState } from 'react';
 import FileUpload from '../components/FileUpload';
 import { API_BASE } from './registry';
 
-export function ImageCompress() {
-  const [quality, setQuality] = useState(75);
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
+const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
+const baseName = (name) => name.replace(/\.[^.]+$/, '');
 
-  const handleFile = async (file) => {
-    setLoading(true);
+// Posts each file to `endpoint` in turn and collects per-file results, so one
+// bad file doesn't sink the batch.
+async function processBatch(files, endpoint, outName, onProgress) {
+  const results = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    onProgress(i + 1, files.length);
     const form = new FormData();
     form.append('file', file);
     try {
-      const res = await fetch(`${API_BASE}/api/image/compress?quality=${quality}`, { method: 'POST', body: form });
-      if (!res.ok) throw new Error('Compression failed');
+      const res = await fetch(endpoint, { method: 'POST', body: form });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const blob = await res.blob();
-      setResult({ url: URL.createObjectURL(blob), name: 'compressed.jpg', originalSize: file.size, newSize: blob.size });
+      results.push({ ok: true, url: URL.createObjectURL(blob), name: outName(file), originalSize: file.size, newSize: blob.size });
     } catch (e) {
-      alert(e.message);
+      results.push({ ok: false, name: file.name, error: e.message });
     }
-    setLoading(false);
+  }
+  return results;
+}
+
+function downloadAll(results) {
+  results.filter((r) => r.ok).forEach((r, i) => {
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = r.url;
+      a.download = r.name;
+      a.click();
+    }, i * 300);
+  });
+}
+
+function BatchResults({ results }) {
+  if (!results?.length) return null;
+  const ok = results.filter((r) => r.ok);
+  return (
+    <div className="space-y-2">
+      {results.map((r, i) => (
+        <div key={i} className={`p-3 bg-da-surface border rounded-lg flex flex-col sm:flex-row sm:items-center gap-2 ${r.ok ? 'border-da-teal/30' : 'border-red-500/40'}`}>
+          <span className="text-sm text-da-text break-all flex-1">{r.name}</span>
+          {r.ok ? (
+            <>
+              {r.originalSize != null && <span className="text-xs text-da-text-faint font-mono">{kb(r.originalSize)} → {kb(r.newSize)}</span>}
+              <a href={r.url} download={r.name} className="px-4 py-2.5 min-h-[44px] inline-flex items-center justify-center bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition text-sm">Download</a>
+            </>
+          ) : (
+            <span className="text-xs text-red-400">Failed: {r.error}</span>
+          )}
+        </div>
+      ))}
+      {ok.length > 1 && (
+        <button onClick={() => downloadAll(results)}
+          className="w-full px-4 py-3 min-h-[48px] bg-da-teal/20 text-da-teal rounded-lg hover:bg-da-teal/30 transition font-medium">
+          Download all ({ok.length} files)
+        </button>
+      )}
+    </div>
+  );
+}
+
+export function ImageCompress() {
+  const [quality, setQuality] = useState(75);
+  const [progress, setProgress] = useState(null);
+  const [results, setResults] = useState(null);
+
+  const handleFiles = async (files) => {
+    setResults(null);
+    const batch = await processBatch(
+      files,
+      `${API_BASE}/api/image/compress?quality=${quality}`,
+      (f) => `${baseName(f.name)}_compressed.jpg`,
+      (done, total) => setProgress({ done, total }),
+    );
+    setProgress(null);
+    setResults(batch);
   };
 
   return (
@@ -30,14 +90,9 @@ export function ImageCompress() {
           className="flex-1" />
         <span className="text-da-teal font-mono">{quality}%</span>
       </div>
-      <FileUpload onFile={handleFile} accept={{ 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.bmp'] }} label="Drop an image to compress" />
-      {loading && <p className="text-da-teal">Compressing...</p>}
-      {result && (
-        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
-          <p className="text-sm text-da-text-muted">Original: {(result.originalSize / 1024).toFixed(1)} KB → Compressed: {(result.newSize / 1024).toFixed(1)} KB</p>
-          <a href={result.url} download={result.name} className="inline-block mt-2 px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download</a>
-        </div>
-      )}
+      <FileUpload multiple onFiles={handleFiles} accept={{ 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.bmp'] }} label="Drop images to compress — multiple files supported" />
+      {progress && <p className="text-da-teal">Compressing {progress.done} of {progress.total}…</p>}
+      <BatchResults results={results} />
     </div>
   );
 }
@@ -90,22 +145,19 @@ export function ImageResize() {
 
 export function ImageConvert() {
   const [format, setFormat] = useState('jpg');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const [results, setResults] = useState(null);
 
-  const handleFile = async (file) => {
-    setLoading(true);
-    const form = new FormData();
-    form.append('file', file);
-    try {
-      const res = await fetch(`${API_BASE}/api/image/convert?output_format=${format}`, { method: 'POST', body: form });
-      if (!res.ok) throw new Error('Conversion failed');
-      const blob = await res.blob();
-      setResult({ url: URL.createObjectURL(blob), name: `converted.${format}` });
-    } catch (e) {
-      alert(e.message);
-    }
-    setLoading(false);
+  const handleFiles = async (files) => {
+    setResults(null);
+    const batch = await processBatch(
+      files,
+      `${API_BASE}/api/image/convert?output_format=${format}`,
+      (f) => `${baseName(f.name)}.${format}`,
+      (done, total) => setProgress({ done, total }),
+    );
+    setProgress(null);
+    setResults(batch);
   };
 
   return (
@@ -113,20 +165,19 @@ export function ImageConvert() {
       <div>
         <label className="block text-sm text-da-text-muted mb-1">Output Format</label>
         <select value={format} onChange={(e) => setFormat(e.target.value)}
-          className="w-full px-4 py-3 bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none">
+          className="w-full px-4 py-3 min-h-[48px] text-base bg-da-surface border border-da-border rounded-lg text-da-text focus:border-da-teal outline-none">
           <option value="jpg">JPEG</option>
           <option value="png">PNG</option>
           <option value="webp">WebP</option>
           <option value="bmp">BMP</option>
+          <option value="gif">GIF</option>
+          <option value="tiff">TIFF</option>
+          <option value="ico">ICO (favicon)</option>
         </select>
       </div>
-      <FileUpload onFile={handleFile} accept={{ 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.bmp'] }} label="Drop an image to convert" />
-      {loading && <p className="text-da-teal">Converting...</p>}
-      {result && (
-        <div className="p-4 bg-da-surface border border-da-teal/30 rounded-lg">
-          <a href={result.url} download={result.name} className="px-4 py-2 bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition">Download {format.toUpperCase()}</a>
-        </div>
-      )}
+      <FileUpload multiple onFiles={handleFiles} accept={{ 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.bmp', '.gif', '.tiff'] }} label="Drop images to convert — multiple files supported" />
+      {progress && <p className="text-da-teal">Converting {progress.done} of {progress.total}…</p>}
+      <BatchResults results={results} />
     </div>
   );
 }

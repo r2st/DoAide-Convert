@@ -31,6 +31,9 @@ FORMAT_MIME = {
     "jpeg": "image/jpeg",
     "webp": "image/webp",
     "bmp": "image/bmp",
+    "gif": "image/gif",
+    "tiff": "image/tiff",
+    "ico": "image/x-icon",
 }
 
 PIL_FORMAT = {
@@ -39,6 +42,9 @@ PIL_FORMAT = {
     "jpeg": "JPEG",
     "webp": "WEBP",
     "bmp": "BMP",
+    "gif": "GIF",
+    "tiff": "TIFF",
+    "ico": "ICO",
 }
 
 
@@ -62,6 +68,8 @@ async def image_convert(
         img = Image.open(io.BytesIO(data))
         if img.mode == "RGBA" and fmt in ("jpg", "jpeg", "bmp"):
             img = img.convert("RGB")
+        if fmt == "ico" and (img.width > 256 or img.height > 256):
+            img.thumbnail((256, 256))
         buf = io.BytesIO()
         img.save(buf, format=PIL_FORMAT[fmt])
         buf.seek(0)

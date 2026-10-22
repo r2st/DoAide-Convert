@@ -1,7 +1,122 @@
 import { Link } from 'react-router-dom';
+import { marked } from 'marked';
 import SEO from '../components/SEO';
 
 const posts = [
+  {
+    slug: 'free-file-converter-online',
+    title: 'Free File Converter Online: Images, PDFs & Data Files Without Signing Up (2026)',
+    excerpt: 'The converters you actually need — images, PDFs, CSV/JSON/Excel — free, in the browser, with no account. Plus when an online converter is the wrong tool.',
+    date: '2026-10-22',
+    content: `
+Searching for a **free file converter online** usually lands you on sites that demand an email address, watermark your file, or cap you at "2 conversions per day". You don't need any of that for everyday conversions.
+
+This guide covers the conversions people actually do — and which ones genuinely belong in a browser.
+
+## Image conversions (the most common by far)
+
+Converting images is instant and private when the tool is built for it:
+
+- **PNG ↔ JPG ↔ WebP** — use the [Image Format Converter](/tool/image-convert). It supports batch conversion, so you can drop 20 photos at once, plus GIF, TIFF and ICO (favicons).
+- **Compressing photos before uploading** — the [Image Compressor](/tool/image-compress) shrinks multiple images at once with a quality slider. A 4 MB phone photo typically compresses to 300–600 KB with no visible difference.
+- **Resizing** — the [Image Resizer](/tool/image-resize) outputs exact pixel dimensions, useful for marketplace listings and passport-photo specs.
+- **Image to Base64** — developers embedding small images in CSS or HTML can use the [Image to Base64 tool](/tool/image-to-base64).
+
+## PDF conversions
+
+- **Merging PDFs** — scanned pages, report chapters, portfolios: the [PDF Merger](/tool/pdf-merge) combines them in seconds.
+- **Compressing PDFs** — email attachment limits are the usual reason; the [PDF Compressor](/tool/pdf-compress) cuts most PDFs by half or more.
+- **PDF to Word** — this one is harder than it looks; see our honest guide to the [best PDF to Word converters in 2026](/blog/best-pdf-to-word-converter-2026).
+
+## Data file conversions
+
+Anyone who touches spreadsheets or APIs eventually needs these:
+
+- [JSON to CSV](/tool/json-to-csv) — turn an API response into something Excel opens.
+- [CSV to JSON](/tool/csv-to-json) — the reverse, for seeding databases and configs.
+- [Excel to CSV](/tool/excel-to-csv) — strip an XLSX down to plain data.
+- [JSON Formatter](/tool/json-formatter) — not strictly a converter, but the tool you'll use most.
+
+## Units, currency, timestamps
+
+Conversions without files are even quicker: [currency with live rates](/tool/currency), [length](/tool/length), [weight](/tool/weight), [temperature](/tool/temperature), [fuel economy](/tool/fuel-economy), [pressure](/tool/pressure), and [Unix timestamps](/tool/timestamp) for developers.
+
+## When an online converter is the wrong tool
+
+Honesty matters here:
+
+- **Video** — uploading a 500 MB video to convert it wastes your time and data. Compress locally instead; our [Video Compression Guide](/tool/video-compression) has copy-paste settings for HandBrake and ffmpeg.
+- **Sensitive documents** — contracts, ID scans and financial statements shouldn't go through random converter sites. Use offline tools (LibreOffice converts most office formats free), or a tool whose privacy policy you've actually read.
+- **Huge batches** — converting thousands of files is a job for a command-line tool like ImageMagick or ffmpeg, not a browser.
+
+## What makes a converter trustworthy?
+
+1. **No forced sign-up** — an email wall means your address is the product.
+2. **No watermarks** on output files.
+3. **Clear file handling** — processed and deleted, not stored.
+4. **It works on mobile** — half of all conversions happen on phones now.
+
+Every tool on DoAide Convert follows all four: free, no login, no limits, no watermarks.
+    `,
+  },
+  {
+    slug: 'best-pdf-to-word-converter-2026',
+    title: 'Best PDF to Word Converter 2026: Free Options That Actually Work',
+    excerpt: 'An honest comparison of free PDF to Word converters in 2026 — Word itself, Google Docs, Adobe online, LibreOffice — and which to use for scanned vs digital PDFs.',
+    date: '2026-10-22',
+    content: `
+Converting PDF to Word is the most-searched file conversion on the internet, and also the one with the most disappointing tools. Formatting breaks, tables scramble, and "free" converters watermark your document or hold it hostage behind a paywall.
+
+Here's an honest guide to what actually works in 2026 — including the options that are completely free.
+
+## First: is your PDF digital or scanned?
+
+This decides everything.
+
+- **Digital PDF** (text you can select and copy) — conversion is easy, and the free tools below handle it well.
+- **Scanned PDF** (a photo of a page) — you need OCR (optical character recognition), which fewer free tools do well.
+
+## The best free options, ranked
+
+### 1. Microsoft Word itself (yes, really)
+
+If you have Word (desktop or the free web version at office.com), just open the PDF with it: **File → Open → select the PDF**. Word converts it to an editable document on the spot. For digital PDFs this gives the best formatting fidelity of any free option, because the converter and the destination are the same engine.
+
+### 2. Google Docs (free, includes basic OCR)
+
+Upload the PDF to Google Drive → right-click → **Open with → Google Docs**. Works on digital PDFs and does basic OCR on scanned ones. Complex layouts (multi-column, heavy tables) get flattened, but for text documents it's excellent — and free with any Google account.
+
+### 3. Adobe Acrobat online (free tier)
+
+Adobe's online converter (acrobat.adobe.com) produces high-fidelity DOCX files — it is Adobe's own format knowledge at work. The free tier allows a limited number of conversions before asking you to subscribe. Good for the occasional important document.
+
+### 4. LibreOffice (free, offline, private)
+
+LibreOffice Draw opens PDFs and can export to editable formats. Fidelity is weaker on complex layouts, but it runs entirely on your machine — the right choice for **sensitive documents** that shouldn't be uploaded anywhere.
+
+## Quick comparison
+
+| Option | Cost | OCR for scans | Fidelity | Privacy |
+| --- | --- | --- | --- | --- |
+| Word (File → Open) | Free with Word | No | Excellent | Local |
+| Google Docs | Free | Basic | Good for text | Cloud |
+| Adobe online | Limited free | Yes | Excellent | Cloud |
+| LibreOffice | Free | No | Fair | Local |
+
+## Just need the text, not the formatting?
+
+Often you don't need a DOCX at all — you need the words. Our free [PDF to Text extractor](/tool/pdf-to-text) pulls the raw text out of any digital PDF instantly, no sign-up. Paste it into any editor and move on.
+
+Related free PDF tools: [merge PDFs](/tool/pdf-merge) and [compress PDFs](/tool/pdf-compress).
+
+## Tips for better conversions
+
+1. **Convert the original, not a scan of a print-out** — every generation loses fidelity.
+2. **Simple layouts convert best** — if you control the source, avoid text boxes and floating images.
+3. **Check tables first** — they break most often; verify numbers after any conversion.
+4. **For contracts and legal documents**, convert locally (Word or LibreOffice) rather than uploading to a web service.
+    `,
+  },
   {
     slug: 'best-image-formats-2024',
     title: 'PNG vs JPG vs WebP: Which Image Format Should You Use?',
@@ -160,8 +275,8 @@ export function BlogPost() {
       <Link to="/blog" className="text-sm text-da-text-faint hover:text-da-teal transition">← Back to Blog</Link>
       <p className="text-sm text-da-text-faint mt-4">{post.date}</p>
       <h1 className="text-3xl font-bold mt-2 mb-6">{post.title}</h1>
-      <div className="prose prose max-w-none prose-headings:text-da-text prose-a:text-da-teal prose-strong:text-da-text"
-        dangerouslySetInnerHTML={{ __html: post.content.replace(/### /g, '<h3>').replace(/## /g, '<h2>').replace(/\n- /g, '\n<li>').replace(/\n\n/g, '<br/><br/>') }} />
+      <div className="blog-content"
+        dangerouslySetInnerHTML={{ __html: marked.parse(post.content, { async: false }) }} />
     </div>
   );
 }

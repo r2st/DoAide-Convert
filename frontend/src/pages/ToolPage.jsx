@@ -4,11 +4,13 @@ import ShareButtons from '../components/ShareButtons';
 import { findTool } from '../tools/registry';
 import UnitConverter from '../tools/UnitConverter';
 import CurrencyConverter from '../tools/CurrencyConverter';
+import TimestampConverter from '../tools/TimestampConverter';
+import VideoGuide from '../tools/VideoGuide';
 import NumberSystems from '../tools/NumberSystems';
 import { WordCounter, CaseConverter, JsonFormatter, Base64Tool, UrlEncodeTool, MarkdownToHtml, LoremIpsumGenerator, TextDiff } from '../tools/TextTools';
 import { ColorPicker, ColorPalette, ContrastChecker } from '../tools/ColorTools';
 import { ImageCompress, ImageResize, ImageConvert, ImageToBase64 } from '../tools/ImageTools';
-import { PdfMerge, PdfCompress, JsonToCsv, CsvToJson, ExcelToCsv } from '../tools/FileTools';
+import { PdfMerge, PdfCompress, PdfToText, JsonToCsv, CsvToJson, ExcelToCsv } from '../tools/FileTools';
 
 const TOOL_COMPONENTS = {
   length: () => <UnitConverter type="length" />,
@@ -21,6 +23,13 @@ const TOOL_COMPONENTS = {
   'data-storage': () => <UnitConverter type="data-storage" />,
   currency: () => <CurrencyConverter />,
   'number-systems': () => <NumberSystems />,
+  pressure: () => <UnitConverter type="pressure" />,
+  energy: () => <UnitConverter type="energy" />,
+  power: () => <UnitConverter type="power" />,
+  'fuel-economy': () => <UnitConverter type="fuel-economy" />,
+  angle: () => <UnitConverter type="angle" />,
+  timestamp: () => <TimestampConverter />,
+  'video-compression': () => <VideoGuide />,
   'word-counter': () => <WordCounter />,
   'case-converter': () => <CaseConverter />,
   'json-formatter': () => <JsonFormatter />,
@@ -38,6 +47,7 @@ const TOOL_COMPONENTS = {
   'image-to-base64': () => <ImageToBase64 />,
   'pdf-merge': () => <PdfMerge />,
   'pdf-compress': () => <PdfCompress />,
+  'pdf-to-text': () => <PdfToText />,
   'json-to-csv': () => <JsonToCsv />,
   'csv-to-json': () => <CsvToJson />,
   'excel-to-csv': () => <ExcelToCsv />,

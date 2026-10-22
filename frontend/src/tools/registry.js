@@ -15,6 +15,12 @@ export const categories = [
       { slug: 'data-storage', name: 'Data Storage Converter', desc: 'Convert between bytes, KB, MB, GB, and TB', seoTitle: 'Data Storage Converter — bytes, KB, MB, GB, TB', seoDesc: 'Free data storage converter. Convert bytes, kilobytes, megabytes, gigabytes, terabytes.' },
       { slug: 'currency', name: 'Currency Converter', desc: 'Convert INR, USD, EUR, GBP with live rates', seoTitle: 'Currency Converter — INR, USD, EUR, GBP', seoDesc: 'Free currency converter with live exchange rates. Convert INR, USD, EUR, GBP.' },
       { slug: 'number-systems', name: 'Number System Converter', desc: 'Convert decimal, binary, octal, and hex', seoTitle: 'Number System Converter — Decimal, Binary, Octal, Hex', seoDesc: 'Free number system converter. Convert between decimal, binary, octal, hexadecimal.' },
+      { slug: 'pressure', name: 'Pressure Converter', desc: 'Convert between bar, psi, atm, Pa, and mmHg', seoTitle: 'Pressure Converter — bar, psi, atm, Pa, mmHg', seoDesc: 'Free online pressure converter. Convert between bar, psi, atmospheres, pascals, kilopascals and mmHg instantly.' },
+      { slug: 'energy', name: 'Energy Converter', desc: 'Convert between joules, calories, kWh, and BTU', seoTitle: 'Energy Converter — Joules, Calories, kWh, BTU', seoDesc: 'Free energy converter. Convert joules, kilojoules, calories, kilocalories, watt-hours, kWh and BTU.' },
+      { slug: 'power', name: 'Power Converter', desc: 'Convert between watts, kilowatts, and horsepower', seoTitle: 'Power Converter — Watts, kW, Horsepower', seoDesc: 'Free power converter. Convert watts, kilowatts, megawatts, horsepower and BTU/hr.' },
+      { slug: 'fuel-economy', name: 'Fuel Economy Converter', desc: 'Convert between km/l, mpg, and l/100km', seoTitle: 'Fuel Economy Converter — km/l, mpg, l/100km', seoDesc: 'Free fuel economy converter. Convert mileage between km per litre, US/UK mpg and litres per 100 km.' },
+      { slug: 'angle', name: 'Angle Converter', desc: 'Convert between degrees, radians, and gradians', seoTitle: 'Angle Converter — Degrees, Radians, Gradians', seoDesc: 'Free angle converter. Convert degrees, radians, gradians, arcminutes, arcseconds and turns.' },
+      { slug: 'timestamp', name: 'Unix Timestamp Converter', desc: 'Convert Unix timestamps to IST, UTC, and local time', seoTitle: 'Unix Timestamp Converter — Epoch to Date (IST/UTC)', seoDesc: 'Free Unix timestamp converter. Convert epoch seconds or milliseconds to IST, UTC and local time, and dates back to Unix time.' },
     ],
   },
   {
@@ -44,9 +50,9 @@ export const categories = [
     name: 'Image Tools',
     icon: '🖼️',
     tools: [
-      { slug: 'image-compress', name: 'Image Compressor', desc: 'Compress images to reduce file size', seoTitle: 'Image Compressor — Reduce File Size', seoDesc: 'Free image compressor. Reduce image file size while maintaining quality.' },
+      { slug: 'image-compress', name: 'Image Compressor', desc: 'Compress images in batch to reduce file size', seoTitle: 'Image Compressor — Batch Compress Images Online', seoDesc: 'Free batch image compressor. Reduce the file size of multiple images at once while maintaining quality.' },
       { slug: 'image-resize', name: 'Image Resizer', desc: 'Resize images to any dimension', seoTitle: 'Image Resizer — Resize Images Online', seoDesc: 'Free image resizer. Resize images to any width and height dimension.' },
-      { slug: 'image-convert', name: 'Image Format Converter', desc: 'Convert between PNG, JPG, and WebP', seoTitle: 'Image Format Converter — PNG, JPG, WebP', seoDesc: 'Free image format converter. Convert between PNG, JPG, WebP, and BMP formats.' },
+      { slug: 'image-convert', name: 'Image Format Converter', desc: 'Batch convert PNG, JPG, WebP, GIF, TIFF, ICO', seoTitle: 'Image Format Converter — PNG, JPG, WebP, GIF, ICO', seoDesc: 'Free batch image format converter. Convert multiple images between PNG, JPG, WebP, BMP, GIF, TIFF and ICO at once.' },
       { slug: 'image-to-base64', name: 'Image to Base64', desc: 'Convert images to Base64 encoded strings', seoTitle: 'Image to Base64 Converter', seoDesc: 'Free image to Base64 converter. Convert any image file to a Base64 encoded string.' },
     ],
   },
@@ -56,9 +62,17 @@ export const categories = [
     tools: [
       { slug: 'pdf-merge', name: 'PDF Merger', desc: 'Merge multiple PDF files into one', seoTitle: 'PDF Merger — Merge PDF Files Online', seoDesc: 'Free PDF merger. Combine multiple PDF files into a single document.' },
       { slug: 'pdf-compress', name: 'PDF Compressor', desc: 'Compress PDF files to reduce size', seoTitle: 'PDF Compressor — Reduce PDF Size', seoDesc: 'Free PDF compressor. Reduce PDF file size while maintaining quality.' },
+      { slug: 'pdf-to-text', name: 'PDF to Text', desc: 'Extract all text from a PDF file', seoTitle: 'PDF to Text Extractor — Copy Text from PDF', seoDesc: 'Free PDF to text extractor. Pull all selectable text out of a PDF and copy it or download it as a .txt file.' },
       { slug: 'json-to-csv', name: 'JSON to CSV', desc: 'Convert JSON data to CSV format', seoTitle: 'JSON to CSV Converter', seoDesc: 'Free JSON to CSV converter. Convert JSON arrays to CSV files instantly.' },
       { slug: 'csv-to-json', name: 'CSV to JSON', desc: 'Convert CSV files to JSON format', seoTitle: 'CSV to JSON Converter', seoDesc: 'Free CSV to JSON converter. Convert CSV files to JSON data instantly.' },
       { slug: 'excel-to-csv', name: 'Excel to CSV', desc: 'Convert Excel spreadsheets to CSV', seoTitle: 'Excel to CSV Converter', seoDesc: 'Free Excel to CSV converter. Convert XLSX spreadsheets to CSV files.' },
+    ],
+  },
+  {
+    name: 'Video Tools',
+    icon: '🎬',
+    tools: [
+      { slug: 'video-compression', name: 'Video Compression Guide', desc: 'Compress videos free — settings, bitrates, and ffmpeg recipes', seoTitle: 'How to Compress Video Free — Settings, Bitrates, ffmpeg', seoDesc: 'Compress video files free without quality loss: recommended bitrates by resolution, HandBrake settings, and copy-paste ffmpeg commands for WhatsApp, email and the web.' },
     ],
   },
 ];

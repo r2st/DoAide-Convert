@@ -220,10 +220,20 @@ async def test_excel_to_csv(client):
 async def test_image_convert_invalid_format(client):
     png = make_png()
     resp = await client.post(
-        "/api/image/convert?output_format=tiff",
+        "/api/image/convert?output_format=exe",
         files={"file": ("test.png", png, "image/png")},
     )
     assert resp.status_code == 400
+
+
+async def test_image_convert_new_formats(client):
+    for fmt, mime in (("gif", "image/gif"), ("tiff", "image/tiff"), ("ico", "image/x-icon")):
+        resp = await client.post(
+            f"/api/image/convert?output_format={fmt}",
+            files={"file": ("test.png", make_png(), "image/png")},
+        )
+        assert resp.status_code == 200, fmt
+        assert resp.headers["content-type"] == mime
 
 
 async def test_pdf_merge_single_file(client):

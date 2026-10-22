@@ -30,7 +30,34 @@ const UNITS = {
     label: 'Data Storage',
     units: { bytes: 1, KB: 1024, MB: 1048576, GB: 1073741824, TB: 1099511627776 },
   },
+  pressure: {
+    label: 'Pressure',
+    units: { Pa: 1, kPa: 1000, bar: 100000, atm: 101325, psi: 6894.757, mmHg: 133.322 },
+  },
+  energy: {
+    label: 'Energy',
+    units: { J: 1, kJ: 1000, cal: 4.184, kcal: 4184, Wh: 3600, kWh: 3600000, BTU: 1055.06 },
+  },
+  power: {
+    label: 'Power',
+    units: { W: 1, kW: 1000, MW: 1000000, hp: 745.7, 'BTU/hr': 0.293071 },
+  },
+  angle: {
+    label: 'Angle',
+    units: { degrees: 1, radians: 57.2957795, gradians: 0.9, arcminutes: 1 / 60, arcseconds: 1 / 3600, turns: 360 },
+  },
+  // Fuel economy mixes direct (km/l ↔ mpg) and reciprocal (l/100km) scales,
+  // so it converts through km/l in code instead of a factor table.
+  'fuel-economy': { label: 'Fuel Economy', units: { 'km/l': 'KMPL', 'mpg (US)': 'MPG_US', 'mpg (UK)': 'MPG_UK', 'l/100km': 'L100' } },
 };
+
+const KMPL_PER = { KMPL: 1, MPG_US: 0.425144, MPG_UK: 0.354006 };
+
+function convertFuel(value, from, to) {
+  if (value <= 0) return NaN;
+  const kmpl = from === 'L100' ? 100 / value : value * KMPL_PER[from];
+  return to === 'L100' ? 100 / kmpl : kmpl / KMPL_PER[to];
+}
 
 function convertTemp(value, from, to) {
   let celsius;
@@ -51,11 +78,15 @@ export default function UnitConverter({ type }) {
   const [to, setTo] = useState(unitNames[1]);
 
   const isTemp = type === 'temperature';
+  const isFuel = type === 'fuel-economy';
   let result = '';
   if (value !== '' && !isNaN(Number(value))) {
     const num = Number(value);
     if (isTemp) {
       result = convertTemp(num, config.units[from], config.units[to]).toFixed(4);
+    } else if (isFuel) {
+      const fuel = convertFuel(num, config.units[from], config.units[to]);
+      result = Number.isFinite(fuel) ? fuel.toFixed(4) : '';
     } else {
       const baseValue = num * config.units[from];
       result = (baseValue / config.units[to]).toFixed(6);

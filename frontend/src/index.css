@@ -32,3 +32,26 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* Blog article typography (marked-rendered Markdown) */
+.blog-content { line-height: 1.75; color: var(--da-text); }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+.blog-content h3 { font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.blog-content p { margin: 0.75rem 0; color: var(--da-text-muted); }
+.blog-content a { color: var(--da-teal); text-decoration: underline; }
+.blog-content strong { color: var(--da-text); }
+.blog-content ul, .blog-content ol { margin: 0.75rem 0; padding-left: 1.5rem; color: var(--da-text-muted); }
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li { margin: 0.35rem 0; }
+.blog-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+.blog-content th, .blog-content td { border: 1px solid var(--da-border); padding: 0.5rem 0.75rem; text-align: left; }
+.blog-content th { background: var(--da-surface); font-weight: 600; }
+.blog-content td { color: var(--da-text-muted); }
+.blog-content code { background: var(--da-surface); border: 1px solid var(--da-border); border-radius: 4px; padding: 0.1rem 0.35rem; font-size: 0.85em; }
+
+/* Mobile: comfortable touch targets and no iOS focus zoom */
+@media (max-width: 640px) {
+  input, select, textarea, button { font-size: 16px; }
+  .blog-content table { display: block; overflow-x: auto; }
+}

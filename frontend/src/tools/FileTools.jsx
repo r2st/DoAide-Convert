@@ -179,3 +179,43 @@ export function ExcelToCsv() {
     </div>
   );
 }
+
+export function PdfToText() {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+
+  const handleFile = async (file) => {
+    setLoading(true);
+    setResult(null);
+    const form = new FormData();
+    form.append('file', file);
+    try {
+      const res = await fetch(`${API_BASE}/api/pdf/to-text`, { method: 'POST', body: form });
+      if (!res.ok) throw new Error('Text extraction failed');
+      setResult(await res.json());
+    } catch (e) {
+      alert(e.message);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <FileUpload onFile={handleFile} accept={{ 'application/pdf': ['.pdf'] }} label="Drop a PDF to extract its text" />
+      {loading && <p className="text-da-teal">Extracting text...</p>}
+      {result && (
+        <div className="space-y-2">
+          <p className="text-sm text-da-text-muted">{result.pages} page(s){result.text ? '' : ' — no selectable text found (scanned PDFs need OCR)'}</p>
+          <textarea value={result.text} readOnly rows={12}
+            className="w-full px-4 py-3 bg-da-surface border border-da-teal/30 rounded-lg text-da-text font-mono text-sm outline-none resize-y" />
+          <div className="flex flex-wrap gap-2">
+            <button onClick={() => navigator.clipboard.writeText(result.text)}
+              className="px-4 py-2.5 min-h-[44px] bg-da-teal/20 text-da-teal rounded-lg hover:bg-da-teal/30 transition text-sm">Copy to Clipboard</button>
+            <a href={URL.createObjectURL(new Blob([result.text], { type: 'text/plain' }))} download="extracted.txt"
+              className="px-4 py-2.5 min-h-[44px] inline-flex items-center bg-da-teal text-da-text rounded-lg font-medium hover:bg-da-teal-dark transition text-sm">Download .txt</a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

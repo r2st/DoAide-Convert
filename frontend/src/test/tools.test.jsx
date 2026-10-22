@@ -13,8 +13,8 @@ function wrap(ui) {
 }
 
 describe('Registry', () => {
-  it('should have 30 tools total', () => {
-    expect(getAllTools().length).toBe(30);
+  it('should have 38 tools total', () => {
+    expect(getAllTools().length).toBe(38);
   });
 
   it('should find tool by slug', () => {
@@ -27,8 +27,8 @@ describe('Registry', () => {
     expect(findTool('nonexistent')).toBeNull();
   });
 
-  it('should have 5 categories', () => {
-    expect(categories.length).toBe(5);
+  it('should have 6 categories', () => {
+    expect(categories.length).toBe(6);
   });
 });
 
@@ -161,5 +161,70 @@ describe('ContrastChecker', () => {
   it('shows contrast ratio', () => {
     wrap(<ContrastChecker />);
     expect(screen.getByText(/Contrast Ratio:/)).toBeInTheDocument();
+  });
+});
+
+import TimestampConverter, { parseTimestamp, relative } from '../tools/TimestampConverter';
+import VideoGuide from '../tools/VideoGuide';
+
+describe('New unit converters', () => {
+  it('converts pressure (1 bar = 14.5038 psi)', () => {
+    wrap(<UnitConverter type="pressure" />);
+    const input = screen.getByPlaceholderText('Enter value');
+    fireEvent.change(input, { target: { value: '1' } });
+    const selects = screen.getAllByRole('combobox');
+    fireEvent.change(selects[0], { target: { value: 'bar' } });
+    fireEvent.change(selects[1], { target: { value: 'psi' } });
+    expect(screen.getByText(/14\.50/)).toBeInTheDocument();
+  });
+
+  it('converts fuel economy reciprocally (10 km/l = 10 l/100km)', () => {
+    wrap(<UnitConverter type="fuel-economy" />);
+    const input = screen.getByPlaceholderText('Enter value');
+    fireEvent.change(input, { target: { value: '10' } });
+    const selects = screen.getAllByRole('combobox');
+    fireEvent.change(selects[0], { target: { value: 'km/l' } });
+    fireEvent.change(selects[1], { target: { value: 'l/100km' } });
+    expect(screen.getByText(/10\.0000/)).toBeInTheDocument();
+  });
+
+  it('converts angle (180 degrees = pi radians)', () => {
+    wrap(<UnitConverter type="angle" />);
+    const input = screen.getByPlaceholderText('Enter value');
+    fireEvent.change(input, { target: { value: '180' } });
+    const selects = screen.getAllByRole('combobox');
+    fireEvent.change(selects[0], { target: { value: 'degrees' } });
+    fireEvent.change(selects[1], { target: { value: 'radians' } });
+    expect(screen.getByText(/3\.14159/)).toBeInTheDocument();
+  });
+});
+
+describe('TimestampConverter', () => {
+  it('parses unix seconds and milliseconds', () => {
+    expect(parseTimestamp('1760000000').getTime()).toBe(1760000000000);
+    expect(parseTimestamp('1760000000000').getTime()).toBe(1760000000000);
+    expect(parseTimestamp('not-a-number')).toBeNull();
+  });
+
+  it('describes relative time', () => {
+    const now = Date.now();
+    expect(relative(new Date(now - 3600 * 1000), now)).toBe('1 hour ago');
+    expect(relative(new Date(now + 2 * 86400 * 1000), now)).toBe('in 2 days');
+  });
+
+  it('renders and converts a timestamp', () => {
+    wrap(<TimestampConverter />);
+    const input = screen.getByPlaceholderText('e.g. 1760000000');
+    fireEvent.change(input, { target: { value: '1760000000' } });
+    expect(screen.getByText('India (IST)')).toBeInTheDocument();
+    expect(screen.getByText('ISO 8601')).toBeInTheDocument();
+  });
+});
+
+describe('VideoGuide', () => {
+  it('renders bitrate table and ffmpeg recipes', () => {
+    wrap(<VideoGuide />);
+    expect(screen.getByText(/Target bitrates by resolution/)).toBeInTheDocument();
+    expect(screen.getAllByText(/ffmpeg/i).length).toBeGreaterThan(1);
   });
 });

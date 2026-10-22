@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 
 export default function SEO({ title, description, path = '' }) {
-  const url = `https://tools.doaide.com${path}`;
+  // Must match sitemap.xml, which lists convert.doaide.com URLs; a mismatched
+  // canonical makes search engines treat every page as a duplicate.
+  const url = `https://convert.doaide.com${path}`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
