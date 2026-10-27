@@ -32,6 +32,7 @@
   <url><loc>https://convert.doaide.com/tool/json-to-csv</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://convert.doaide.com/tool/csv-to-json</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://convert.doaide.com/tool/excel-to-csv</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert.doaide.com/embed</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://convert.doaide.com/blog/best-image-formats-2024</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://convert.doaide.com/blog/unit-conversion-guide</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://convert.doaide.com/blog/pdf-tools-guide</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>

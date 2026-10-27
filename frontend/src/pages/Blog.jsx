@@ -338,7 +338,22 @@ export function BlogPost() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
-      <SEO title={`${post.title} — DoAide Convert`} description={post.excerpt} path={`/blog/${post.slug}`} />
+      <SEO
+        title={`${post.title} — DoAide Convert`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        jsonLdOverride={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.date,
+          url: `https://convert.doaide.com/blog/${post.slug}`,
+          author: { '@type': 'Organization', name: 'DoAide', url: 'https://doaide.com' },
+          publisher: { '@type': 'Organization', name: 'DoAide', url: 'https://doaide.com' },
+        }}
+      />
       <Link to="/blog" className="text-sm text-da-text-faint hover:text-da-teal transition">← Back to Blog</Link>
       <p className="text-sm text-da-text-faint mt-4">{post.date}</p>
       <h1 className="text-3xl font-bold mt-2 mb-6">{post.title}</h1>
